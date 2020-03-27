@@ -2,13 +2,12 @@ package com.bednarskar.freeproxyplugin;
 
 import com.bednarskar.proxycorn.api.model.Filter;
 import com.neovisionaries.i18n.CountryCode;
-import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
 
 import java.util.Optional;
 
-public class FreeProxyRequestBuilder {
+public final class FreeProxyRequestBuilder {
 
 	public static final String ANONYMITY_ARG = "anonymity[]";
 	public static final String LAST_TESTED_ARG = "lastTested";
@@ -27,9 +26,9 @@ public class FreeProxyRequestBuilder {
 	// percentage
 	private static final String MIN_UPTIME = "75";
 	private RequestBuilder requestBuilder;
-	private Filter filter;
+	private final Filter filter;
 
-	public FreeProxyRequestBuilder(Filter filter){
+	public FreeProxyRequestBuilder(Filter filter) {
 		this.requestBuilder = RequestBuilder.get();
 		this.filter = filter;
 	}
@@ -48,8 +47,8 @@ public class FreeProxyRequestBuilder {
 	}
 
 	private void addProtocols() {
-		for(String protocol : filter.getProtocols()) {
-			if(!protocol.equalsIgnoreCase(HTTPS)) {
+		for (String protocol : filter.getProtocols()) {
+			if (!protocol.equalsIgnoreCase(HTTPS)) {
 				requestBuilder.addParameter(PROTOCOL_ARG, protocol);
 			} else {
 				requestBuilder.addParameter(ALLOWS_HTTPS_ARG, "1");
@@ -57,13 +56,13 @@ public class FreeProxyRequestBuilder {
 		}
 	}
 	private void addCountries() {
-		for(String countryCode : filter.getCountryCodes()) {
+		for (String countryCode : filter.getCountryCodes()) {
 			Optional<CountryCode> cc = Optional.ofNullable(CountryCode.getByCode(countryCode));
 			cc.ifPresent(code -> requestBuilder.addParameter(COUNTRY_ARG, code.getAlpha2()));
 		}
 	}
 	private void addPorts() {
-		for(String port : filter.getPortNumbers()) {
+		for (String port : filter.getPortNumbers()) {
 			requestBuilder.addParameter(PORT_ARG, port);
 		}
 	}

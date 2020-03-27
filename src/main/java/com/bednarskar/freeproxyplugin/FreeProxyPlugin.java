@@ -9,14 +9,14 @@ import org.apache.log4j.Logger;
 import java.util.Set;
 
 public class FreeProxyPlugin implements ProxyCornPlugin {
-    final static Logger LOGGER = Logger.getLogger(FreeProxyPlugin.class);
+    static final Logger LOGGER = Logger.getLogger(FreeProxyPlugin.class);
 
-    public String getName () {
+    public String getName() {
         return "free proxy plugin";
     }
 
     @Override
-    public Set<ProxyInstanceBasicInfo> getProxyInstanceBasicInfo (Filter filter) throws Exception {
+    public Set<ProxyInstanceBasicInfo> getProxyInstanceBasicInfo(Filter filter) throws Exception {
         LOGGER.debug("freeproxyplugin started...");
         LOGGER.debug("Filter: " + filter.toString());
         Client client = new Client();
