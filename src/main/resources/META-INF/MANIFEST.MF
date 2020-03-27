@@ -1,0 +1,4 @@
+Built-By: bednarskar
+Plugin-Name: FreeProxyPlugin
+Description: This is plugin to ProxyCorn to get proxies from https://getproxylist.com/
+Plugin-Path: com.bednarskar.freeproxyplugin.FreeProxyPlugin

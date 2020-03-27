@@ -1,0 +1,22 @@
+# Gradle
+.idea/**/gradle.xml
+.idea/**/libraries
+*.iws
+.idea_modules/
+*.log
+*.class
+target/
+*.jar
+*.war
+logs/
+.classpath
+*.project
+.settings/
+/.metadata/
+.idea/
+.idea
+.project/
+.classpath/
+*.iml
+*.attach_pid*
+logs
