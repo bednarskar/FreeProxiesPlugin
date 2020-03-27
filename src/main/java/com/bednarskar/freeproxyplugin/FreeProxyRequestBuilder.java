@@ -34,7 +34,7 @@ public class FreeProxyRequestBuilder {
 		this.filter = filter;
 	}
 
-	public RequestBuilder buildRequest() {
+	public HttpUriRequest buildRequest() {
 		requestBuilder.setUri(FREE_PROXY_API_URL);
 		addProtocols();
 		addCountries();
@@ -44,7 +44,7 @@ public class FreeProxyRequestBuilder {
 		requestBuilder.addParameter(LAST_TESTED_ARG, LAST_TESTED);
 		requestBuilder.addParameter(ALLOWS_POST_ARG, ALLOW_POST);
 		requestBuilder.addParameter(MIN_UPTIME_ARG, MIN_UPTIME);
-		return requestBuilder;
+		return requestBuilder.build();
 	}
 
 	private void addProtocols() {

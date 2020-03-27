@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.neovisionaries.i18n.CountryCode;
 import org.apache.http.HttpStatus;
-import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
@@ -46,14 +45,11 @@ public class Client {
 		Set<ProxyInstanceBasicInfo> pluginResponse = new HashSet<>();
 		FreeProxyRequestBuilder requestBuilder = new FreeProxyRequestBuilder(filter);
 
-		RequestBuilder request = requestBuilder.buildRequest();
+		HttpUriRequest request = requestBuilder.buildRequest();
 		LOGGER.info("Request: " + request.toString());
 
 		for (int i=0; i <= TRY_NUMBER; i++) {
 			CloseableHttpClient httpClient = HttpClients.createDefault();
-			RequestConfig requestConfig = RequestConfig.custom().setProxyPreferredAuthSchemes()
-
-			request.setConfig(new RequestConfig())
 			CloseableHttpResponse httpResponse = httpClient.execute(request);
 			String response = null;
 			if(httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
